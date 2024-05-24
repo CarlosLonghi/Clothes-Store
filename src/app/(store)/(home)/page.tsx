@@ -1,80 +1,69 @@
 import { api } from '@/data/api'
+import { Product } from '@/data/types/product'
 import Image from 'next/image'
 import Link from 'next/link'
 
-async function fetchFeaturedProducts() {
+async function fetchFeaturedProducts(): Promise<Product[]> {
   const featuredProducts = await api('/products?featured')
 
   return featuredProducts
 }
 
 export default async function Home() {
-  const featuredProducts = await fetchFeaturedProducts()
-  console.log(featuredProducts)
+  const [highlightedProduct, ...otherProducts] = await fetchFeaturedProducts()
 
   return (
     <div className="grid grid-cols-10 grid-rows-6 gap-4">
       <Link
-        href={'#'}
+        href={`/products/${highlightedProduct.slug}`}
         className="group relative col-span-10 row-span-6 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center md:col-span-6 lg:col-span-7"
       >
         <Image
           className="scale-95 group-hover:scale-100 transition-transform duration-200"
-          src={'/images/camiseta-hoop-culture.png'}
+          src={highlightedProduct.image}
           width={550}
           height={550}
           quality={100}
-          alt=""
+          alt={highlightedProduct.title}
         />
 
         <div className="absolute bottom-16 right-8 h-12 flex items-center gap-2 max-w-64 rounded-full border-2 border-zinc-500 bg-black/50 p-1 pl-5">
-          <span className="text-sm truncate">Hoop Culture Shirt</span>
+          <span className="text-sm truncate">{highlightedProduct.title}</span>
           <span className="flex h-full items-center justify-center rounded-full bg-indigo-600 px-4 font-semibold whitespace-nowrap">
-            R$ 150,00
+            {highlightedProduct.price.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
           </span>
         </div>
       </Link>
 
-      <Link
-        href={'#'}
-        className="group relative col-span-10 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center sm:col-span-5 md:col-span-4 lg:col-span-3"
-      >
-        <Image
-          className="scale-95 group-hover:scale-100 transition-transform duration-200"
-          src={'/images/camiseta-ernie-ball.png'}
-          width={300}
-          height={300}
-          quality={100}
-          alt=""
-        />
+      {otherProducts.map((product) => (
+        <Link
+          key={product.id}
+          href={`/products/${product.slug}`}
+          className="group relative col-span-10 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center sm:col-span-5 md:col-span-4 lg:col-span-3"
+        >
+          <Image
+            className="scale-95 group-hover:scale-100 transition-transform duration-200"
+            src={product.image}
+            width={300}
+            height={300}
+            quality={100}
+            alt=""
+          />
 
-        <div className="absolute bottom-8 right-6 h-12 flex items-center gap-2 max-w-64 rounded-full border-2 border-zinc-500 bg-black/50 p-1 pl-5">
-          <span className="text-sm truncate">Globee Shirt</span>
-          <span className="flex h-full items-center justify-center rounded-full bg-indigo-600 px-4 font-semibold whitespace-nowrap">
-            R$ 100,00
-          </span>
-        </div>
-      </Link>
-      <Link
-        href={'#'}
-        className="group relative col-span-10 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center sm:col-span-5 md:col-span-4 lg:col-span-3"
-      >
-        <Image
-          className="scale-95 group-hover:scale-100 transition-transform duration-200"
-          src={'/images/camiseta-globbe.png'}
-          width={300}
-          height={300}
-          quality={100}
-          alt=""
-        />
-
-        <div className="absolute bottom-8 right-6 h-12 flex items-center gap-2 max-w-64 rounded-full border-2 border-zinc-500 bg-black/50 p-1 pl-5">
-          <span className="text-sm truncate">Ernie Ball Shirt</span>
-          <span className="flex h-full items-center justify-center rounded-full bg-indigo-600 px-4 font-semibold whitespace-nowrap">
-            R$ 120,00
-          </span>
-        </div>
-      </Link>
+          <div className="absolute bottom-8 right-6 h-12 flex items-center gap-2 max-w-64 rounded-full border-2 border-zinc-500 bg-black/50 p-1 pl-5">
+            <span className="text-sm truncate">{product.title}</span>
+            <span className="flex h-full items-center justify-center rounded-full bg-indigo-600 px-4 font-semibold whitespace-nowrap">
+              {product.price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </span>
+          </div>
+        </Link>
+      ))}
     </div>
   )
 }

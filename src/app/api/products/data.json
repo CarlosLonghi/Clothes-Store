@@ -5,7 +5,7 @@
       "title": "Camiseta Hoop Culture",
       "slug": "camiseta-hoop-culture",
       "price": 129,
-      "image": "/camiseta-hoop-culture.png",
+      "image": "\/images\/camiseta-hoop-culture.png",
       "description": "Camiseta Hoop Culture fabricada com 100% de algodão premium.",
       "featured": true
     },
@@ -14,7 +14,7 @@
       "title": "Camiseta Globbe",
       "slug": "camiseta-globbe",
       "price": 99,
-      "image": "/camiseta-globbe.png",
+      "image": "\/images\/camiseta-globbe.png",
       "description": "Camiseta Globbe feita com 90% de algodão e 10% de elastano, oferecendo conforto e estilo.",
       "featured": true
     },
@@ -23,7 +23,7 @@
       "title": "Camiseta Ernie Ball",
       "slug": "camiseta-ernie-ball",
       "price": 69,
-      "image": "/camiseta-ernie-ball.png",
+      "image": "\/images\/camiseta-ernie-ball.png",
       "description": "Camiseta Puma Essential de alta qualidade, confeccionada em 100% algodão.",
       "featured": true
     },
@@ -32,7 +32,7 @@
       "title": "Camiseta Fair Des",
       "slug": "camiseta-fair-des",
       "price": 99,
-      "image": "/camiseta-fair-des.png",
+      "image": "\/images\/camiseta-fair-des.png",
       "description": "Camiseta Fair Des com mistura de 85% algodão e 15% poliéster, ideal para atividades físicas.",
       "featured": false
     },
@@ -41,7 +41,7 @@
       "title": "Camiseta Calvin Klein Classic",
       "slug": "camiseta-calvin-klein-classic",
       "price": 99,
-      "image": "/camiseta-calvin-klein-classic.png",
+      "image": "\/images\/camiseta-calvin-klein-classic.png",
       "description": "Camiseta Calvin Klein Classic feita com 100% algodão, oferecendo um visual elegante e moderno.",
       "featured": false
     }
