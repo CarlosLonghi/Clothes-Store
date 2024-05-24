@@ -5,14 +5,14 @@ export default async function Home() {
   await new Promise((resolve) => setTimeout(resolve, 2000))
 
   return (
-    <div className="grid grid-cols-9 grid-rows-6 gap-4">
+    <div className="grid grid-cols-10 grid-rows-6 gap-4">
       <Link
         href={'#'}
-        className="group relative col-span-6 row-span-6 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center"
+        className="group relative col-span-10 row-span-6 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center md:col-span-6 lg:col-span-7"
       >
         <Image
           className="scale-95 group-hover:scale-100 transition-transform duration-200"
-          src={'/images/shirt-1.png'}
+          src={'/images/camiseta-hoop-culture.png'}
           width={550}
           height={550}
           quality={100}
@@ -29,11 +29,11 @@ export default async function Home() {
 
       <Link
         href={'#'}
-        className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center"
+        className="group relative col-span-10 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center sm:col-span-5 md:col-span-4 lg:col-span-3"
       >
         <Image
           className="scale-95 group-hover:scale-100 transition-transform duration-200"
-          src={'/images/shirt-2.png'}
+          src={'/images/camiseta-ernie-ball.png'}
           width={300}
           height={300}
           quality={100}
@@ -49,11 +49,11 @@ export default async function Home() {
       </Link>
       <Link
         href={'#'}
-        className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center"
+        className="group relative col-span-10 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-center sm:col-span-5 md:col-span-4 lg:col-span-3"
       >
         <Image
           className="scale-95 group-hover:scale-100 transition-transform duration-200"
-          src={'/images/shirt-3.png'}
+          src={'/images/camiseta-globbe.png'}
           width={300}
           height={300}
           quality={100}
