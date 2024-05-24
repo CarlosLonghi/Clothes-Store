@@ -1,8 +1,16 @@
+import { api } from '@/data/api'
 import Image from 'next/image'
 import Link from 'next/link'
 
+async function fetchFeaturedProducts() {
+  const featuredProducts = await api('/products?featured')
+
+  return featuredProducts
+}
+
 export default async function Home() {
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  const featuredProducts = await fetchFeaturedProducts()
+  console.log(featuredProducts)
 
   return (
     <div className="grid grid-cols-10 grid-rows-6 gap-4">
