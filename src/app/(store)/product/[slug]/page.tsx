@@ -1,38 +1,63 @@
+import { api } from '@/data/api'
+import { Product } from '@/data/types/product'
 import { PlusCircle } from 'lucide-react'
 import Image from 'next/image'
 
-export default function ProductView() {
+interface ProductProps {
+  params: {
+    slug: string
+  }
+}
+
+async function getProductSlug(slug: string): Promise<Product> {
+  const response = await api(`/products/${slug}`, {
+    next: {
+      revalidate: 60 * 30, // 30 minutes
+    },
+  })
+
+  return response
+}
+
+export default async function ProductView({ params }: ProductProps) {
+  const product = await getProductSlug(params.slug)
+
   return (
-    <div className="relative grid max-h-[16rem] grid-cols-3">
-      <div className="col-span-2 overflow-hidden">
+    <div className="relative grid gap-4 lg:gap-8 grid-cols-3 grid-rows-2">
+      <div className="flex justify-center col-span-3 lg:col-span-2 row-span-2 overflow-hidden">
         <Image
-          src={'/images/camiseta-ernie-ball.png'}
-          alt=""
+          className="max-h-[calc(100vh-12rem)] object-contain"
+          src={product.image}
+          alt={product.title}
           width={1000}
           height={1000}
           quality={100}
         />
       </div>
 
-      <div className="flex flex-col justify-center px-6 lg:px-12">
-        <h1 className="text-3xl font-bold leading-tight">
-          Camiseta Ernie Ball
-        </h1>
+      <div className="flex flex-col justify-center col-span-3 lg:col-span-1 lg:row-span-2">
+        <h1 className="text-3xl font-bold leading-tight">{product.title}</h1>
 
         <p className="mt-2 leading-relaxed text-zinc-400">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non a nam
-          autem optio minima laborum delectus, eligendi perspiciatis, veritatis
-          vel magni tempora laudantium quos labore pariatur nisi, incidunt ipsum
-          excepturi.
+          {product.description}
         </p>
 
         <div className="mt-8 flex items-center gap-3">
           <span className="inline-block rounded-full bg-indigo-600 px-4 py-1.5 font-semibold whitespace-nowrap">
-            R$ 100,00
+            {product.price.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
           </span>
           <span className="text-sm text-zinc-400">
             Em até <strong className="text-emerald-500">12x sem juros</strong>{' '}
-            de <strong className="text-emerald-500">R$ 10,00</strong>
+            de{' '}
+            <strong className="text-emerald-500">
+              {(product.price / 12).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </strong>
           </span>
         </div>
 

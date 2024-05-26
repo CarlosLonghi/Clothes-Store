@@ -1,7 +1,7 @@
 import data from './data.json'
 
 export async function GET() {
-  const featuredProducts = data.products.filter((product) => product.featured)
+  await new Promise((resolve) => setTimeout(resolve, 1500)) // fake API response time
 
-  return Response.json(featuredProducts)
+  return Response.json(data.products)
 }

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 async function fetchFeaturedProducts(): Promise<Product[]> {
-  const featuredProducts = await api('/products?featured', {
+  const featuredProducts = await api('/products/featured', {
     next: {
       revalidate: 60 * 30, // 30 minutes
     },
