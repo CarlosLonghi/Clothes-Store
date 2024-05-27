@@ -1,6 +1,7 @@
 import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
 import { PlusCircle } from 'lucide-react'
+import { Metadata } from 'next'
 import Image from 'next/image'
 
 interface ProductProps {
@@ -17,6 +18,17 @@ async function getProductSlug(slug: string): Promise<Product> {
   })
 
   return response
+}
+
+export async function generateMetadata({
+  params,
+}: ProductProps): Promise<Metadata> {
+  const product = await getProductSlug(params.slug)
+
+  return {
+    title: product.title,
+    // icons: product.image, // Adiciona imagem do produto no lugar do favicon
+  }
 }
 
 export default async function ProductView({ params }: ProductProps) {
