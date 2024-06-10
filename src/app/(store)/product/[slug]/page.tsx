@@ -1,6 +1,6 @@
+import { AddToCartButton } from '@/components/add-to-cart-button'
 import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
-import { PlusCircle } from 'lucide-react'
 import { Metadata } from 'next'
 import Image from 'next/image'
 
@@ -99,10 +99,7 @@ export default async function ProductView({ params }: ProductProps) {
           </div>
         </div>
 
-        <button className="mt-6 flex gap-2 py-2 justify-center items-center rounded-full bg-emerald-600 text-zinc-100">
-          Colocar na sacola
-          <PlusCircle strokeWidth={2} className="w-5 h-5 text-zinc-100" />
-        </button>
+        <AddToCartButton productId={product.id} />
       </div>
     </div>
   )
