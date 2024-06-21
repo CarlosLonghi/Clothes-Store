@@ -59,7 +59,7 @@ export default async function Home() {
             width={300}
             height={300}
             quality={100}
-            alt=""
+            alt={product.title}
           />
 
           <div className="absolute bottom-8 right-6 h-12 flex items-center gap-2 max-w-64 rounded-full border-2 border-zinc-500 bg-black/50 p-1 pl-5">
