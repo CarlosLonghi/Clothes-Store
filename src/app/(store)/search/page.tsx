@@ -54,7 +54,7 @@ export default async function Search({ searchParams }: SearchProps) {
               />
 
               <div className="absolute bottom-8 right-6 h-12 flex items-center gap-2 max-w-64 rounded-full border-2 border-zinc-500 bg-black/50 p-1 pl-5">
-                <span className="text-sm truncate">Camista Hoop Culture</span>
+                <span className="text-sm truncate">{product.title}</span>
                 <span className="flex h-full items-center justify-center rounded-full bg-indigo-600 px-4 font-semibold whitespace-nowrap">
                   {product.price.toLocaleString('pt-BR', {
                     style: 'currency',
